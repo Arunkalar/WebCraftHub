@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - Artisan Crafts Admin</title>
+    <meta name="description" content="Add new handmade products to your store">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Admin Layout -->
+    <div class="admin-layout">
+        <!-- Admin Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h3><i class="fas fa-heart"></i> Artisan Crafts</h3>
+                <p>Admin Panel</p>
+            </div>
+
+            <nav class="admin-navigation">
+                <ul class="admin-nav">
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-list.html">
+                            <i class="fas fa-box"></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="add-product.html" class="active">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Add Product</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="adminManager.logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="admin-user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-details">
+                    <strong>Admin User</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Admin Main Content -->
+        <main class="admin-main" id="main-content">
+            <!-- Admin Header -->
+            <header class="admin-header">
+                <div class="admin-header-content">
+                    <h1>Add New Product</h1>
+                    <p>Create a new handmade product listing for your store.</p>
+                </div>
+                <div class="admin-header-actions">
+                    <a href="product-list.html" class="btn btn-outline btn-sm">
+                        <i class="fas fa-arrow-left"></i> Back to Products
+                    </a>
+                    <a href="dashboard.html" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </div>
+            </header>
+
+            <!-- Add Product Form -->
+            <section class="admin-section">
+                <div class="form-container">
+                    <form class="admin-form" id="add-product-form">
+                        <div class="form-grid">
+                            <!-- Basic Information -->
+                            <div class="form-section">
+                                <h3>Basic Information</h3>
+                                
+                                <div class="form-group">
+                                    <label for="name">Product Name *</label>
+                                    <input type="text" id="name" name="name" required 
+                                           placeholder="e.g., Handwoven Ceramic Bowl">
+                                    <small>Give your product a descriptive and appealing name</small>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="category">Category *</label>
+                                        <select id="category" name="category" required>
+                                            <option value="">Select a category</option>
+                                            <option value="pottery">Pottery</option>
+                                            <option value="jewelry">Jewelry</option>
+                                            <option value="home-decor">Home Decor</option>
+                                            <option value="textiles">Textiles</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="price">Price (USD) *</label>
+                                        <input type="number" id="price" name="price" required 
+                                               min="0" step="0.01" placeholder="0.00">
+                                        <small>Enter price without currency symbol</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Description *</label>
+                                    <textarea id="description" name="description" required rows="4"
+                                              placeholder="Describe your product, its features, and what makes it special..."></textarea>
+                                    <small>Provide a detailed description to help customers understand your product</small>
+                                </div>
+                            </div>
+
+                            <!-- Product Details -->
+                            <div class="form-section">
+                                <h3>Product Details</h3>
+                                
+                                <div class="form-group">
+                                    <label for="materials">Materials</label>
+                                    <input type="text" id="materials" name="materials" 
+                                           placeholder="e.g., 100% organic cotton, sterling silver">
+                                    <small>List the materials used to make this product</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="dimensions">Dimensions</label>
+                                    <input type="text" id="dimensions" name="dimensions" 
+                                           placeholder="e.g., 8&quot; diameter x 3&quot; height">
+                                    <small>Provide size information to help customers</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="care">Care Instructions</label>
+                                    <textarea id="care" name="care" rows="3"
+                                              placeholder="How should customers care for this product?"></textarea>
+                                    <small>Help customers maintain their purchase</small>
+                                </div>
+                            </div>
+
+                            <!-- Product Image -->
+                            <div class="form-section">
+                                <h3>Product Image</h3>
+                                
+                                <div class="form-group">
+                                    <label for="product-image">Product Image</label>
+                                    <input type="file" id="product-image" name="image" 
+                                           accept="image/*" class="file-input">
+                                    <div class="file-input-label">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Choose image or drag and drop</span>
+                                        <small>Recommended: Square image, at least 500x500px</small>
+                                    </div>
+                                    <div id="image-preview" class="image-preview"></div>
+                                </div>
+                            </div>
+
+                            <!-- Product Status -->
+                            <div class="form-section">
+                                <h3>Product Status</h3>
+                                
+                                <div class="form-group">
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="inStock" name="inStock" checked>
+                                            <span class="checkmark"></span>
+                                            <div class="checkbox-content">
+                                                <strong>In Stock</strong>
+                                                <small>Product is available for purchase</small>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="featured" name="featured">
+                                            <span class="checkmark"></span>
+                                            <div class="checkbox-content">
+                                                <strong>Featured Product</strong>
+                                                <small>Show this product on the homepage</small>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="history.back()">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-undo"></i> Reset Form
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus-circle"></i> Add Product
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Help Section -->
+            <section class="admin-section">
+                <div class="help-card">
+                    <h3><i class="fas fa-lightbulb"></i> Tips for Great Product Listings</h3>
+                    <div class="help-grid">
+                        <div class="help-item">
+                            <h4>Product Name</h4>
+                            <p>Use descriptive names that include the main material or style. Avoid all caps or excessive punctuation.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>Description</h4>
+                            <p>Tell the story of your product. Include how it's made, what makes it special, and how customers can use it.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>Pricing</h4>
+                            <p>Research similar products to price competitively. Consider your materials, time, and desired profit margin.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>Images</h4>
+                            <p>Use high-quality, well-lit photos. Show different angles and include scale references when helpful.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Additional Styles for Add Product Page -->
+    <style>
+        .form-container {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray);
+            padding: var(--spacing-xxl);
+        }
+
+        .admin-form {
+            max-width: none;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xxl);
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .form-section {
+            background: var(--light-gray);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray);
+        }
+
+        .form-section h3 {
+            color: var(--dark-brown);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--primary-brown);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--dark-brown);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--gray);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-brown);
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+        }
+
+        .form-group small {
+            display: block;
+            color: var(--dark-gray);
+            font-size: 0.85rem;
+            margin-top: var(--spacing-xs);
+            line-height: 1.4;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-input-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-xxl);
+            border: 2px dashed var(--gray);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            text-align: center;
+        }
+
+        .file-input-label:hover {
+            border-color: var(--primary-brown);
+            background-color: var(--cream);
+        }
+
+        .file-input-label i {
+            font-size: 2rem;
+            color: var(--primary-brown);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .file-input-label span {
+            color: var(--dark-brown);
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .file-input-label small {
+            color: var(--dark-gray);
+        }
+
+        .image-preview {
+            margin-top: var(--spacing-md);
+            text-align: center;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            cursor: pointer;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+        }
+
+        .checkbox-label:hover {
+            background-color: var(--white);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            accent-color: var(--primary-brown);
+        }
+
+        .checkbox-content {
+            flex: 1;
+        }
+
+        .checkbox-content strong {
+            display: block;
+            color: var(--dark-brown);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .checkbox-content small {
+            color: var(--dark-gray);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: flex-end;
+            padding-top: var(--spacing-lg);
+            border-top: 2px solid var(--gray);
+        }
+
+        .help-card {
+            background: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray);
+            border-left: 4px solid var(--sage-green);
+        }
+
+        .help-card h3 {
+            color: var(--dark-brown);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .help-card h3 i {
+            color: var(--sage-green);
+            margin-right: var(--spacing-sm);
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .help-item h4 {
+            color: var(--primary-brown);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .help-item p {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .admin-header-actions {
+                width: 100%;
+                justify-content: stretch;
+            }
+
+            .admin-header-actions .btn {
+                flex: 1;
+            }
+        }
+
+        /* Form Validation States */
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: var(--error);
+            box-shadow: 0 0 0 3px rgba(205, 92, 92, 0.1);
+        }
+
+        .form-group input.success,
+        .form-group select.success,
+        .form-group textarea.success {
+            border-color: var(--success);
+            box-shadow: 0 0 0 3px rgba(123, 132, 113, 0.1);
+        }
+
+        /* Loading State */
+        .admin-form.loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .admin-form.loading .btn {
+            background-color: var(--gray);
+            cursor: not-allowed;
+        }
+    </style>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+ Overall Folder Structure
+pgsql
+Copy
+Edit
+/handmade-store/
+│
+├── index.html          <-- Home page
+├── shop.html           <-- Product listing page
+├── product.html        <-- Product details
+├── about.html          <-- About you/your story
+├── contact.html        <-- Contact form
+├── cart.html           <-- Cart with checkout
+├── style.css           <-- Common CSS styles
+├── /images/            <-- Product & website images
+├── /js/                <-- (Optional) for cart.js, app.js etc.
+└── /admin/             <-- (Optional) for admin panel pages
+📄 Page-by-Page Suggestions
+1. index.html (Home Page)
+Hero section with banner & CTA (Shop Now)
+
+Featured products (3–6 cards)
+
+Categories section
+
+Testimonials
+
+Newsletter signup form
+
+Footer with social/contact info
+
+✅ Tip: Use large images and natural colors (like brown, cream) to match handmade theme.
+
+2. shop.html (Product Listing Page)
+Filter by category/price
+
+Product cards (image, title, price, view button)
+
+Pagination or load more
+
+✅ Tip: Keep consistent card size and spacing for a clean look.
+
+3. product.html (Product Detail Page)
+One big image
+
+Product title, description, price
+
+“Add to Cart” and “Pay Now” button (UPI QR or dummy button)
+
+Material info and small care instruction (optional)
+
+✅ Tip: Use JavaScript for cart management (localStorage works well for small projects).
+
+4. cart.html (Shopping Cart Page)
+List of added products (image, name, qty, total)
+
+Checkout form (name, phone, address)
+
+Pay Now CTA or redirect to UPI/QR
+
+✅ Tip: JavaScript handles cart items, total price calculation.
+
+5. about.html (About You Page)
+Your handmade journey
+
+Why handmade matters
+
+High-quality images of your workspace
+
+Mission/vision
+
+✅ Tip: Keep it personal and authentic — this builds trust.
+
+6. contact.html (Contact Page)
+Name, email, message form
+
+WhatsApp or phone number
+
+Google Map (optional)
+
+Social links
+
+✅ Tip: Use a real form handler like Formspree or Google Forms if no backend.
+
+7. style.css (Unified Styling)
+Use a consistent color palette
+
+Responsive layout (media queries or Bootstrap/Tailwind)
+
+Animations (e.g., fade-in, hover effects)
+
+Button and input field styling
+
+💳 Optional: Payment (UPI)
+Add static QR image for UPI
+
+Or integrate Razorpay/Instamojo for free UPI link
+
+🔒 Optional: Admin Panel Pages (/admin/)
+admin-login.html
+
+add-product.html (Form: name, image, price, description)
+
+product-list.html (table with edit/delete options)
+
+🚀 Tips to Get Started
+Start with index.html and link style.css
+
+Duplicate the base layout for all other pages
+
+Use dummy data first, then replace with real products
+
+Test on mobile — make sure all pages are responsive
+
+Use clean folder structure (/images, /js, etc.)
+

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Artisan Crafts</title>
+    <meta name="description" content="Learn about our handmade journey and why handcrafted items matter.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><i class="fas fa-heart"></i> Artisan Crafts</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="shop.html" class="nav-link">Shop</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="cart.html" class="nav-link cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Story</h1>
+            <p>Handcrafted with passion, made with love</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <!-- Our Journey -->
+            <div class="about-section">
+                <div class="about-text">
+                    <h2>Our Handmade Journey</h2>
+                    <p>What started as a hobby in my grandmother's attic has blossomed into a passion for creating beautiful, meaningful pieces that bring joy to everyday life. Each item in our collection is carefully crafted by hand, ensuring that no two pieces are exactly alike.</p>
+                    <p>We believe that handmade items carry a special energy - the love, time, and attention that goes into each piece makes it truly unique. When you purchase from us, you're not just buying a product; you're supporting a tradition of craftsmanship that has been passed down through generations.</p>
+                </div>
+                <div class="about-image">
+                    <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="workshopGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#8B4513;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#D2691E;stop-opacity:0.8" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Workshop scene -->
+                        <rect x="50" y="200" width="300" height="80" fill="#8B4513" opacity="0.3"/>
+                        <!-- Workbench -->
+                        <rect x="80" y="180" width="240" height="20" fill="#8B4513"/>
+                        <!-- Tools -->
+                        <rect x="100" y="150" width="2" height="30" fill="#654321"/>
+                        <rect x="110" y="155" width="2" height="25" fill="#654321"/>
+                        <rect x="120" y="152" width="2" height="28" fill="#654321"/>
+                        <!-- Crafted items -->
+                        <circle cx="200" cy="170" r="8" fill="#D2691E"/>
+                        <circle cx="220" cy="175" r="6" fill="#CD853F"/>
+                        <circle cx="180" cy="172" r="7" fill="#DEB887"/>
+                        <!-- Hands working -->
+                        <path d="M160 140 Q180 130 200 140 Q195 150 175 155 Q155 150 160 140" fill="#DEB887"/>
+                        <path d="M200 140 Q220 130 240 140 Q235 150 215 155 Q195 150 200 140" fill="#DEB887"/>
+                        <!-- Workshop atmosphere -->
+                        <circle cx="150" cy="100" r="3" fill="#FFD700" opacity="0.6"/>
+                        <circle cx="250" cy="80" r="2" fill="#FFD700" opacity="0.6"/>
+                        <circle cx="300" cy="120" r="2.5" fill="#FFD700" opacity="0.6"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Why Handmade -->
+            <div class="about-section reverse">
+                <div class="about-image">
+                    <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="heartGradient" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#8B4513;stop-opacity:0.8" />
+                            </radialGradient>
+                        </defs>
+                        <!-- Heart shape representing love in crafting -->
+                        <path d="M200 250 C180 200, 120 180, 120 130 C120 100, 150 80, 180 100 C190 90, 210 90, 220 100 C250 80, 280 100, 280 130 C280 180, 220 200, 200 250 Z" fill="url(#heartGradient)"/>
+                        <!-- Decorative elements around the heart -->
+                        <circle cx="100" cy="120" r="4" fill="#FFD700" opacity="0.7"/>
+                        <circle cx="300" cy="140" r="5" fill="#FFD700" opacity="0.7"/>
+                        <circle cx="150" cy="80" r="3" fill="#FFD700" opacity="0.7"/>
+                        <circle cx="250" cy="70" r="4" fill="#FFD700" opacity="0.7"/>
+                        <!-- Small craft elements -->
+                        <rect x="90" y="200" width="8" height="8" fill="#8B4513" opacity="0.6"/>
+                        <rect x="310" y="180" width="6" height="6" fill="#8B4513" opacity="0.6"/>
+                        <circle cx="120" cy="250" r="5" fill="#D2691E" opacity="0.6"/>
+                        <circle cx="280" cy="220" r="4" fill="#D2691E" opacity="0.6"/>
+                    </svg>
+                </div>
+                <div class="about-text">
+                    <h2>Why Handmade Matters</h2>
+                    <p>In our fast-paced, mass-produced world, handmade items stand as a testament to the value of slowing down and appreciating the beauty in imperfection. Each piece tells a story of patience, skill, and dedication.</p>
+                    <p>When you choose handmade, you're choosing:</p>
+                    <ul>
+                        <li><strong>Uniqueness:</strong> No two pieces are exactly alike</li>
+                        <li><strong>Quality:</strong> Attention to detail that machines can't replicate</li>
+                        <li><strong>Sustainability:</strong> Small-batch production with minimal waste</li>
+                        <li><strong>Community:</strong> Supporting local artisans and traditional crafts</li>
+                        <li><strong>Story:</strong> Each piece has meaning and history</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mission & Vision -->
+            <div class="mission-vision">
+                <div class="mission-vision-grid">
+                    <div class="mission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>To preserve and celebrate traditional craftsmanship while creating beautiful, functional pieces that enhance everyday life. We strive to connect people with the artisans behind their treasures.</p>
+                    </div>
+                    <div class="mission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>A world where handmade craftsmanship thrives, where people value quality over quantity, and where every purchase supports creativity and sustainable practices.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Values -->
+            <div class="values-section">
+                <h2 class="section-title">Our Values</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Passion</h4>
+                        <p>We pour our heart into every creation</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4>Sustainability</h4>
+                        <p>Eco-friendly materials and practices</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Quality</h4>
+                        <p>Excellence in every detail</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Community</h4>
+                        <p>Supporting local artisans and customers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="about-cta">
+                <h2>Ready to Explore Our Collection?</h2>
+                <p>Discover unique, handcrafted pieces that will add beauty and meaning to your life.</p>
+                <a href="shop.html" class="btn btn-primary">Shop Our Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-heart"></i> Artisan Crafts</h3>
+                    <p>Handmade with love, crafted with care. Every piece tells a story.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="shop.html?category=jewelry">Jewelry</a></li>
+                        <li><a href="shop.html?category=home-decor">Home Decor</a></li>
+                        <li><a href="shop.html?category=pottery">Pottery</a></li>
+                        <li><a href="shop.html?category=textiles">Textiles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> hello@artisancrafts.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Craft Street, Art City</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Artisan Crafts. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Artisan Crafts</title>
+    <meta name="description" content="Review your handmade treasures and proceed to checkout.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><i class="fas fa-heart"></i> Artisan Crafts</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="shop.html" class="nav-link">Shop</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="cart.html" class="nav-link cart-link active">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Shopping Cart</h1>
+            <p>Review your handmade treasures</p>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="cart-content">
+        <div class="container">
+            <!-- Empty Cart State -->
+            <div class="empty-cart" id="empty-cart" style="display: none;">
+                <div class="empty-cart-content">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h2>Your cart is empty</h2>
+                    <p>Looks like you haven't added any handmade treasures to your cart yet.</p>
+                    <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+                </div>
+            </div>
+
+            <!-- Cart Items -->
+            <div class="cart-layout" id="cart-layout">
+                <div class="cart-items-section">
+                    <div class="cart-header">
+                        <h2>Cart Items</h2>
+                        <button class="clear-cart-btn" id="clear-cart">
+                            <i class="fas fa-trash"></i> Clear Cart
+                        </button>
+                    </div>
+
+                    <div class="cart-items" id="cart-items">
+                        <!-- Cart items will be loaded by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary-section">
+                    <div class="order-summary">
+                        <h3>Order Summary</h3>
+                        
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>Shipping:</span>
+                            <span id="shipping">$0.00</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>Tax:</span>
+                            <span id="tax">$0.00</span>
+                        </div>
+                        
+                        <div class="summary-divider"></div>
+                        
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span id="total">$0.00</span>
+                        </div>
+
+                        <!-- Shipping Options -->
+                        <div class="shipping-options">
+                            <h4>Shipping Options</h4>
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="standard" checked>
+                                <span>Standard Shipping (5-7 days) - Free</span>
+                            </label>
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="express">
+                                <span>Express Shipping (2-3 days) - $9.99</span>
+                            </label>
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="overnight">
+                                <span>Overnight Shipping - $24.99</span>
+                            </label>
+                        </div>
+
+                        <!-- Promo Code -->
+                        <div class="promo-code-section">
+                            <input type="text" id="promo-code" placeholder="Enter promo code">
+                            <button class="btn btn-outline" id="apply-promo">Apply</button>
+                        </div>
+                        <div class="promo-message" id="promo-message"></div>
+
+                        <!-- Checkout Button -->
+                        <button class="btn btn-primary checkout-btn" id="checkout-btn">
+                            Proceed to Checkout
+                        </button>
+
+                        <div class="secure-checkout">
+                            <i class="fas fa-lock"></i>
+                            <span>Secure checkout with SSL encryption</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content checkout-modal">
+            <span class="modal-close">&times;</span>
+            <div class="checkout-content">
+                <h2>Checkout</h2>
+                
+                <div class="checkout-steps">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span>Shipping</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span>Payment</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span>Confirmation</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Shipping Information -->
+                <div class="checkout-step" id="step-1">
+                    <h3>Shipping Information</h3>
+                    <form class="checkout-form" id="shipping-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name *</label>
+                                <input type="text" id="first-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name *</label>
+                                <input type="text" id="last-name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Street Address *</label>
+                            <input type="text" id="address" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address2">Apartment, suite, etc. (optional)</label>
+                            <input type="text" id="address2">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State *</label>
+                                <input type="text" id="state" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">ZIP Code *</label>
+                                <input type="text" id="zip" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">
+                            Continue to Payment
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Step 2: Payment Information -->
+                <div class="checkout-step" id="step-2" style="display: none;">
+                    <h3>Payment Method</h3>
+                    
+                    <div class="payment-methods">
+                        <label class="payment-method">
+                            <input type="radio" name="payment" value="upi" checked>
+                            <span class="payment-icon"><i class="fas fa-mobile-alt"></i></span>
+                            <span>UPI Payment</span>
+                        </label>
+                        <label class="payment-method">
+                            <input type="radio" name="payment" value="card">
+                            <span class="payment-icon"><i class="fas fa-credit-card"></i></span>
+                            <span>Credit/Debit Card</span>
+                        </label>
+                        <label class="payment-method">
+                            <input type="radio" name="payment" value="paypal">
+                            <span class="payment-icon"><i class="fab fa-paypal"></i></span>
+                            <span>PayPal</span>
+                        </label>
+                    </div>
+
+                    <!-- UPI Payment -->
+                    <div class="payment-details" id="upi-payment">
+                        <div class="upi-qr-section">
+                            <h4>Scan QR Code to Pay</h4>
+                            <div class="qr-code">
+                                <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- QR Code Pattern -->
+                                    <rect width="200" height="200" fill="white" stroke="#000" stroke-width="2"/>
+                                    <!-- Corner markers -->
+                                    <rect x="10" y="10" width="30" height="30" fill="black"/>
+                                    <rect x="160" y="10" width="30" height="30" fill="black"/>
+                                    <rect x="10" y="160" width="30" height="30" fill="black"/>
+                                    <!-- Data pattern simulation -->
+                                    <rect x="50" y="20" width="5" height="5" fill="black"/>
+                                    <rect x="60" y="20" width="5" height="5" fill="black"/>
+                                    <rect x="80" y="20" width="5" height="5" fill="black"/>
+                                    <rect x="100" y="20" width="5" height="5" fill="black"/>
+                                    <rect x="120" y="20" width="5" height="5" fill="black"/>
+                                    <!-- More pattern elements -->
+                                    <rect x="20" y="50" width="5" height="5" fill="black"/>
+                                    <rect x="30" y="60" width="5" height="5" fill="black"/>
+                                    <rect x="50" y="70" width="5" height="5" fill="black"/>
+                                    <rect x="70" y="80" width="5" height="5" fill="black"/>
+                                    <rect x="90" y="90" width="5" height="5" fill="black"/>
+                                    <rect x="110" y="100" width="5" height="5" fill="black"/>
+                                    <rect x="130" y="110" width="5" height="5" fill="black"/>
+                                    <rect x="150" y="120" width="5" height="5" fill="black"/>
+                                    <rect x="170" y="130" width="5" height="5" fill="black"/>
+                                    <!-- Center pattern -->
+                                    <rect x="90" y="90" width="20" height="20" fill="black"/>
+                                    <rect x="95" y="95" width="10" height="10" fill="white"/>
+                                </svg>
+                            </div>
+                            <p>Total Amount: <strong id="payment-total">$0.00</strong></p>
+                            <p>UPI ID: <strong>artisancrafts@upi</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="payment-actions">
+                        <button type="button" class="btn btn-outline" onclick="prevStep(1)">
+                            Back to Shipping
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="completePayment()">
+                            Complete Payment
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Confirmation -->
+                <div class="checkout-step" id="step-3" style="display: none;">
+                    <div class="order-confirmation">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Order Confirmed!</h3>
+                        <p>Thank you for your purchase. We'll start crafting your order with love.</p>
+                        
+                        <div class="order-details">
+                            <p><strong>Order Number:</strong> <span id="order-number"></span></p>
+                            <p><strong>Email:</strong> A confirmation email has been sent to your address.</p>
+                            <p><strong>Estimated Delivery:</strong> <span id="delivery-date"></span></p>
+                        </div>
+                        
+                        <div class="confirmation-actions">
+                            <a href="shop.html" class="btn btn-outline">Continue Shopping</a>
+                            <a href="index.html" class="btn btn-primary">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-heart"></i> Artisan Crafts</h3>
+                    <p>Handmade with love, crafted with care. Every piece tells a story.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="shop.html?category=jewelry">Jewelry</a></li>
+                        <li><a href="shop.html?category=home-decor">Home Decor</a></li>
+                        <li><a href="shop.html?category=pottery">Pottery</a></li>
+                        <li><a href="shop.html?category=textiles">Textiles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> hello@artisancrafts.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Craft Street, Art City</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Artisan Crafts. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Artisan Crafts</title>
+    <meta name="description" content="Admin login for Artisan Crafts store management">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Admin Login Container -->
+    <div class="login-container">
+        <form class="login-form" id="admin-login-form">
+            <div class="login-header">
+                <h2><i class="fas fa-heart"></i> Artisan Crafts</h2>
+                <p>Admin Panel Login</p>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required 
+                       placeholder="Enter your username" autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required 
+                       placeholder="Enter your password" autocomplete="current-password">
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="remember-me" name="remember">
+                    <span class="checkmark"></span>
+                    Remember me
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+
+            <div class="login-error" id="login-error" style="display: none;">
+                <!-- Error message will be displayed here -->
+            </div>
+
+            <div class="login-info">
+                <h4>Demo Credentials:</h4>
+                <p><strong>Username:</strong> admin</p>
+                <p><strong>Password:</strong> artisan123</p>
+                <small>This is a demo admin panel for testing purposes.</small>
+            </div>
+
+            <div class="login-footer">
+                <a href="../index.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Back to Store
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Additional Styles for Login Page -->
+    <style>
+        .login-container {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 50%, var(--sage-green) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+        }
+
+        .login-form {
+            background: var(--white);
+            padding: var(--spacing-xxl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 450px;
+            border: 1px solid var(--gray);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .login-header h2 {
+            color: var(--primary-brown);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .login-header h2 i {
+            color: var(--clay-red);
+            margin-right: var(--spacing-sm);
+        }
+
+        .login-header p {
+            color: var(--dark-gray);
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--dark-brown);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--gray);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: var(--transition-fast);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-brown);
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            accent-color: var(--primary-brown);
+        }
+
+        .login-form .btn {
+            width: 100%;
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+            padding: var(--spacing-md) var(--spacing-lg);
+        }
+
+        .login-error {
+            background-color: var(--error);
+            color: var(--white);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .login-info {
+            background-color: var(--light-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+            border-left: 4px solid var(--sage-green);
+        }
+
+        .login-info h4 {
+            color: var(--dark-brown);
+            margin-bottom: var(--spacing-md);
+            font-size: 1rem;
+        }
+
+        .login-info p {
+            margin-bottom: var(--spacing-xs);
+            color: var(--dark-gray);
+        }
+
+        .login-info small {
+            color: var(--dark-gray);
+            font-style: italic;
+        }
+
+        .login-footer {
+            text-align: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--gray);
+        }
+
+        .login-footer .btn {
+            width: auto;
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: var(--spacing-sm);
+            }
+
+            .login-form {
+                padding: var(--spacing-xl);
+            }
+
+            .login-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Loading State */
+        .login-form.loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .login-form.loading .btn {
+            background-color: var(--gray);
+            cursor: not-allowed;
+        }
+
+        /* Focus Visible for Better Accessibility */
+        .login-form *:focus-visible {
+            outline: 2px solid var(--primary-brown);
+            outline-offset: 2px;
+        }
+    </style>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

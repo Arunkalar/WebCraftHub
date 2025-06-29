@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Artisan Crafts</title>
+    <meta name="description" content="Admin dashboard for managing Artisan Crafts store">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Admin Layout -->
+    <div class="admin-layout">
+        <!-- Admin Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h3><i class="fas fa-heart"></i> Artisan Crafts</h3>
+                <p>Admin Panel</p>
+            </div>
+
+            <nav class="admin-navigation">
+                <ul class="admin-nav">
+                    <li>
+                        <a href="dashboard.html" class="active">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-list.html">
+                            <i class="fas fa-box"></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="add-product.html">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Add Product</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="adminManager.logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="admin-user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-details">
+                    <strong>Admin User</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Admin Main Content -->
+        <main class="admin-main" id="main-content">
+            <!-- Admin Header -->
+            <header class="admin-header">
+                <div class="admin-header-content">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's what's happening with your store.</p>
+                </div>
+                <div class="admin-header-actions">
+                    <button class="btn btn-outline btn-sm" onclick="window.open('../index.html', '_blank')">
+                        <i class="fas fa-external-link-alt"></i> View Store
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="location.href='add-product.html'">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Stats -->
+            <section class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-box" style="color: var(--primary-brown);"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="total-products">0</div>
+                        <div class="stat-label">Total Products</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart" style="color: var(--sage-green);"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="total-orders">0</div>
+                        <div class="stat-label">Total Orders</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-dollar-sign" style="color: var(--clay-red);"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="total-revenue">$0.00</div>
+                        <div class="stat-label">Total Revenue</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="in-stock-products">0</div>
+                        <div class="stat-label">In Stock</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="admin-section">
+                <div class="section-header">
+                    <h2>Recent Orders</h2>
+                    <a href="#" class="btn btn-outline btn-sm">View All</a>
+                </div>
+
+                <div class="admin-table">
+                    <div id="recent-orders">
+                        <p>Loading recent orders...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="admin-section">
+                <div class="section-header">
+                    <h2>Quick Actions</h2>
+                </div>
+
+                <div class="quick-actions">
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <h3>Add New Product</h3>
+                        <p>Create a new handmade product listing</p>
+                        <a href="add-product.html" class="btn btn-primary">Add Product</a>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3>Manage Products</h3>
+                        <p>Edit, update, or remove existing products</p>
+                        <a href="product-list.html" class="btn btn-primary">Manage Products</a>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>View Analytics</h3>
+                        <p>Check your store's performance metrics</p>
+                        <button class="btn btn-primary" onclick="alert('Analytics feature coming soon!')">
+                            View Analytics
+                        </button>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3>Store Settings</h3>
+                        <p>Configure your store preferences</p>
+                        <button class="btn btn-primary" onclick="alert('Settings feature coming soon!')">
+                            Open Settings
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Additional Styles for Dashboard -->
+    <style>
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .admin-header-content h1 {
+            color: var(--dark-brown);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .admin-header-content p {
+            color: var(--dark-gray);
+            margin: 0;
+        }
+
+        .admin-header-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-shrink: 0;
+        }
+
+        .btn-sm {
+            padding: var(--spacing-sm) var(--spacing-md);
+            font-size: 0.9rem;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            transition: var(--transition-medium);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            opacity: 0.8;
+        }
+
+        .stat-content {
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-brown);
+            margin-bottom: var(--spacing-xs);
+            font-family: var(--font-heading);
+        }
+
+        .stat-label {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-section {
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--gray);
+        }
+
+        .section-header h2 {
+            color: var(--dark-brown);
+            margin: 0;
+        }
+
+        .admin-table {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray);
+        }
+
+        .admin-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .admin-table th,
+        .admin-table td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .admin-table th {
+            background: var(--primary-brown);
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-table tr:hover {
+            background: var(--cream);
+        }
+
+        .admin-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.pending {
+            background: var(--warning);
+            color: var(--dark-brown);
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .action-card {
+            background: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray);
+            text-align: center;
+            transition: var(--transition-medium);
+        }
+
+        .action-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .action-icon {
+            font-size: 3rem;
+            color: var(--primary-brown);
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.8;
+        }
+
+        .action-card h3 {
+            color: var(--dark-brown);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .action-card p {
+            color: var(--dark-gray);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.5;
+        }
+
+        .admin-logo {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .admin-logo h3 {
+            color: var(--white);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .admin-logo h3 i {
+            color: var(--clay-red);
+            margin-right: var(--spacing-sm);
+        }
+
+        .admin-logo p {
+            color: var(--cream);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .admin-user-info {
+            position: absolute;
+            bottom: var(--spacing-lg);
+            left: var(--spacing-lg);
+            right: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: rgba(139, 69, 19, 0.2);
+            border-radius: var(--radius-md);
+        }
+
+        .user-avatar {
+            font-size: 2rem;
+            color: var(--cream);
+        }
+
+        .user-details strong {
+            color: var(--white);
+        }
+
+        .user-details small {
+            color: var(--cream);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .admin-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-sidebar {
+                position: relative;
+                height: auto;
+            }
+
+            .admin-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--spacing-xs);
+            }
+
+            .admin-nav li {
+                margin: 0;
+            }
+
+            .admin-nav a {
+                padding: var(--spacing-sm);
+                font-size: 0.9rem;
+            }
+
+            .admin-user-info {
+                position: static;
+                margin-top: var(--spacing-lg);
+            }
+
+            .admin-header {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .admin-header-actions {
+                width: 100%;
+                justify-content: stretch;
+            }
+
+            .admin-header-actions .btn {
+                flex: 1;
+            }
+
+            .admin-stats {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

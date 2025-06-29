@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List - Artisan Crafts Admin</title>
+    <meta name="description" content="Manage your handmade products inventory">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Admin Layout -->
+    <div class="admin-layout">
+        <!-- Admin Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h3><i class="fas fa-heart"></i> Artisan Crafts</h3>
+                <p>Admin Panel</p>
+            </div>
+
+            <nav class="admin-navigation">
+                <ul class="admin-nav">
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-list.html" class="active">
+                            <i class="fas fa-box"></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="add-product.html">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Add Product</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="adminManager.logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="admin-user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-details">
+                    <strong>Admin User</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Admin Main Content -->
+        <main class="admin-main" id="main-content">
+            <!-- Admin Header -->
+            <header class="admin-header">
+                <div class="admin-header-content">
+                    <h1>Product Management</h1>
+                    <p>Manage your handmade product inventory and listings.</p>
+                </div>
+                <div class="admin-header-actions">
+                    <a href="add-product.html" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus"></i> Add New Product
+                    </a>
+                    <button class="btn btn-outline btn-sm" onclick="location.reload()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+            </header>
+
+            <!-- Filters and Search -->
+            <section class="admin-section">
+                <div class="filters-container">
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label for="product-search">Search Products</label>
+                            <div class="search-box">
+                                <input type="text" id="product-search" placeholder="Search by name or description...">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="category-filter">Filter by Category</label>
+                            <select id="category-filter">
+                                <option value="all">All Categories</option>
+                                <option value="pottery">Pottery</option>
+                                <option value="jewelry">Jewelry</option>
+                                <option value="home-decor">Home Decor</option>
+                                <option value="textiles">Textiles</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="status-filter">Filter by Status</label>
+                            <select id="status-filter">
+                                <option value="all">All Products</option>
+                                <option value="in-stock">In Stock</option>
+                                <option value="out-of-stock">Out of Stock</option>
+                                <option value="featured">Featured</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="sort-products">Sort by</label>
+                            <select id="sort-products">
+                                <option value="name">Name (A-Z)</option>
+                                <option value="name-desc">Name (Z-A)</option>
+                                <option value="price-low">Price (Low to High)</option>
+                                <option value="price-high">Price (High to Low)</option>
+                                <option value="date-new">Newest First</option>
+                                <option value="date-old">Oldest First</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Statistics -->
+            <section class="admin-section">
+                <div class="product-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="total-products-count">0</span>
+                            <span class="stat-label">Total Products</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="in-stock-count">0</span>
+                            <span class="stat-label">In Stock</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="out-of-stock-count">0</span>
+                            <span class="stat-label">Out of Stock</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="featured-count">0</span>
+                            <span class="stat-label">Featured</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product List -->
+            <section class="admin-section">
+                <div class="admin-table">
+                    <div id="product-list">
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading products...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bulk Actions -->
+            <section class="admin-section">
+                <div class="bulk-actions">
+                    <div class="bulk-actions-header">
+                        <h3>Bulk Actions</h3>
+                        <p>Select products to perform bulk operations</p>
+                    </div>
+
+                    <div class="bulk-actions-buttons">
+                        <button class="btn btn-outline" onclick="alert('Feature coming soon!')">
+                            <i class="fas fa-eye"></i> Mark as Featured
+                        </button>
+                        <button class="btn btn-outline" onclick="alert('Feature coming soon!')">
+                            <i class="fas fa-eye-slash"></i> Remove from Featured
+                        </button>
+                        <button class="btn btn-outline" onclick="alert('Feature coming soon!')">
+                            <i class="fas fa-check-circle"></i> Mark In Stock
+                        </button>
+                        <button class="btn btn-outline" onclick="alert('Feature coming soon!')">
+                            <i class="fas fa-times-circle"></i> Mark Out of Stock
+                        </button>
+                        <button class="btn btn-outline btn-danger" onclick="alert('Feature coming soon!')">
+                            <i class="fas fa-trash"></i> Delete Selected
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="delete-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <div class="modal-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>Confirm Deletion</h3>
+                <p id="delete-message">Are you sure you want to delete this product?</p>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" onclick="closeModal('delete-modal')">Cancel</button>
+                    <button class="btn btn-danger" id="confirm-delete">Delete Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Styles for Product List Page -->
+    <style>
+        .filters-container {
+            background: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .filters-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .filter-group label {
+            color: var(--dark-brown);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: var(--spacing-md);
+            padding-right: 40px;
+            border: 2px solid var(--gray);
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-brown);
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark-gray);
+        }
+
+        .filter-group select {
+            padding: var(--spacing-md);
+            border: 2px solid var(--gray);
+            border-radius: var(--radius-md);
+            background: var(--white);
+            transition: var(--transition-fast);
+        }
+
+        .filter-group select:focus {
+            border-color: var(--primary-brown);
+            outline: none;
+        }
+
+        .product-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .stat-item {
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            color: var(--primary-brown);
+            opacity: 0.8;
+        }
+
+        .stat-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-brown);
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--dark-gray);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .product-image-small {
+            width: 60px;
+            height: 50px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .product-image-small svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .status-badge.in-stock {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .status-badge.out-of-stock {
+            background: var(--error);
+            color: var(--white);
+        }
+
+        .status-badge.featured {
+            background: var(--clay-red);
+            color: var(--white);
+        }
+
+        .status-badge.regular {
+            background: var(--gray);
+            color: var(--dark-brown);
+        }
+
+        .table-actions {
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+
+        .table-actions .btn {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            font-size: 0.8rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: var(--spacing-xxl);
+            color: var(--dark-gray);
+        }
+
+        .loading-state i {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-brown);
+        }
+
+        .bulk-actions {
+            background: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray);
+            border-left: 4px solid var(--sage-green);
+        }
+
+        .bulk-actions-header {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .bulk-actions-header h3 {
+            color: var(--dark-brown);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .bulk-actions-header p {
+            color: var(--dark-gray);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .bulk-actions-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-danger {
+            background-color: var(--error);
+            border-color: var(--error);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background-color: #B22222;
+            border-color: #B22222;
+        }
+
+        /* Modal Styles */
+        .modal-body {
+            text-align: center;
+            padding: var(--spacing-xl);
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            color: var(--warning);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .modal-body h3 {
+            color: var(--dark-brown);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .modal-body p {
+            color: var(--dark-gray);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .filters-row {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .product-stats {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .admin-table {
+                overflow-x: auto;
+            }
+
+            .admin-table table {
+                min-width: 800px;
+            }
+
+            .bulk-actions-buttons {
+                flex-direction: column;
+            }
+
+            .bulk-actions-buttons .btn {
+                width: 100%;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .admin-header-actions {
+                width: 100%;
+                justify-content: stretch;
+            }
+
+            .admin-header-actions .btn {
+                flex: 1;
+            }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-xxl);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--gray);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .empty-state h3 {
+            color: var(--dark-brown);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .empty-state p {
+            color: var(--dark-gray);
+            margin-bottom: var(--spacing-xl);
+        }
+    </style>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
